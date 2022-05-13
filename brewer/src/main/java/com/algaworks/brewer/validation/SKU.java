@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD,ElementType.METHOD,ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "([azA-Z]{2}\\d{4})?")
+@Pattern(regexp = "([a-zA-Z]{2}\\d{4})?")
 public @interface SKU {
     @OverridesAttribute(constraint = Pattern.class, name="message")
     String message() default "SKU deve seguir o padrão XX9999";
