@@ -1,6 +1,8 @@
 package com.algaworks.brewer.config.init;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
 
 import com.algaworks.brewer.config.ServiceConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
@@ -36,4 +38,8 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new Filter[] { characterEncodingFilter };
 	}
 
+	@Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+		registration.setMultipartConfig(new MultipartConfigElement(""));
+	}
 }
