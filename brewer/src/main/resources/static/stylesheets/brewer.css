@@ -7,6 +7,9 @@
     font-size: 18px;
 }
 
+.bw-require > .control-label:after{
+    content:"*"
+}
 
 /*
 ######################
