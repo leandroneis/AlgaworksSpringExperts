@@ -1,10 +1,11 @@
 package com.algaworks.brewer.service.exception;
 
-public class NomeEstiloJaCadastradoException extends Exception {
+public class NomeEstiloJaCadastradoException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public NomeEstiloJaCadastradoException(String message){
+    public NomeEstiloJaCadastradoException(String message) {
         super(message);
     }
+
 }

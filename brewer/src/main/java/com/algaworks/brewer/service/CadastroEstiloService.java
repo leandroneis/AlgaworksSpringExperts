@@ -17,7 +17,7 @@ public class CadastroEstiloService {
     private Estilos estilos;
 
     @Transactional
-    public Estilo salvar(Estilo estilo) throws NomeEstiloJaCadastradoException {
+    public Estilo salvar(Estilo estilo) {
         Optional<Estilo> estiloOptional = estilos.findByNomeIgnoreCase(estilo.getNome());
         if (estiloOptional.isPresent()) {
             throw new NomeEstiloJaCadastradoException("Nome do estilo já cadastrado");
