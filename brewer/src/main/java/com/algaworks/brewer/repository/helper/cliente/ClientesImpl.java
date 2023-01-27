@@ -36,8 +36,8 @@ public class ClientesImpl implements ClientesQueries {
 
         paginacaoUtil.preparar(criteria, pageable);
         adicionarFiltro(filtro, criteria);
-        criteria.createAlias("endereco.cidade","c", JoinType.LEFT_OUTER_JOIN);
-        criteria.createAlias("c.estado","e", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("endereco.cidade", "c", JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("c.estado", "e", JoinType.LEFT_OUTER_JOIN);
 
         return new PageImpl<>(criteria.list(), pageable, total(filtro));
     }

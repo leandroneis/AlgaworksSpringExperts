@@ -1,10 +1,10 @@
 package com.algaworks.brewer.repository.filter;
 
+import java.math.BigDecimal;
+
 import com.algaworks.brewer.model.Estilo;
 import com.algaworks.brewer.model.Origem;
 import com.algaworks.brewer.model.Sabor;
-
-import java.math.BigDecimal;
 
 public class CervejaFilter {
 
@@ -71,4 +71,5 @@ public class CervejaFilter {
     public void setValorAte(BigDecimal valorAte) {
         this.valorAte = valorAte;
     }
+
 }

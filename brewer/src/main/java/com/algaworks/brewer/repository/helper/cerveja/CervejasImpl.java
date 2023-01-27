@@ -3,20 +3,21 @@ package com.algaworks.brewer.repository.helper.cerveja;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.algaworks.brewer.repository.paginacao.PaginacaoUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.*;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.repository.filter.CervejaFilter;
+import com.algaworks.brewer.repository.paginacao.PaginacaoUtil;
 
 public class CervejasImpl implements CervejasQueries {
 
@@ -26,22 +27,21 @@ public class CervejasImpl implements CervejasQueries {
     @Autowired
     private PaginacaoUtil paginacaoUtil;
 
-
+    @SuppressWarnings("unchecked")
     @Override
     @Transactional(readOnly = true)
     public Page<Cerveja> filtrar(CervejaFilter filtro, Pageable pageable) {
         Criteria criteria = manager.unwrap(Session.class).createCriteria(Cerveja.class);
 
-        paginacaoUtil.preparar(criteria,pageable);
-
+        paginacaoUtil.preparar(criteria, pageable);
         adicionarFiltro(filtro, criteria);
 
-        return new PageImpl<>(criteria.list(),pageable,total(filtro));
+        return new PageImpl<>(criteria.list(), pageable, total(filtro));
     }
 
     private Long total(CervejaFilter filtro) {
         Criteria criteria = manager.unwrap(Session.class).createCriteria(Cerveja.class);
-        adicionarFiltro(filtro,criteria);
+        adicionarFiltro(filtro, criteria);
         criteria.setProjection(Projections.rowCount());
         return (Long) criteria.uniqueResult();
     }

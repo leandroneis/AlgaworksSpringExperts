@@ -1,4 +1,5 @@
 package com.algaworks.brewer.model;
+
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
@@ -74,10 +75,11 @@ public class Endereco implements Serializable {
         this.estado = estado;
     }
 
-    public String getNomeCidadeSiglaEstado(){
-        if(this.cidade!= null){
+    public String getNomeCidadeSiglaEstado() {
+        if (this.cidade != null) {
             return this.cidade.getNome() + "/" + this.cidade.getEstado().getSigla();
         }
+
         return null;
     }
 

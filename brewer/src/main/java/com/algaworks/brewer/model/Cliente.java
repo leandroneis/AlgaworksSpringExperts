@@ -2,7 +2,18 @@ package com.algaworks.brewer.model;
 
 import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -48,15 +59,14 @@ public class Cliente implements Serializable {
     @Embedded
     private Endereco endereco;
 
-    @PrePersist
-    @PreUpdate
-    private void prePersistPreUpdate(){
+    @PrePersist @PreUpdate
+    private void prePersistPreUpdate() {
         this.cpfOuCnpj = TipoPessoa.removerFormatacao(this.cpfOuCnpj);
     }
 
     @PostLoad
-    private void postLoad(){
-      this.cpfOuCnpj = this.tipoPessoa.formatar(this.cpfOuCnpj);
+    private void postLoad() {
+        this.cpfOuCnpj = this.tipoPessoa.formatar(this.cpfOuCnpj);
     }
 
     public Long getCodigo() {
@@ -115,7 +125,7 @@ public class Cliente implements Serializable {
         this.endereco = endereco;
     }
 
-    public String getCpfOuCnpjSemFormatacao(){
+    public String getCpfOuCnpjSemFormatacao() {
         return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
     }
 

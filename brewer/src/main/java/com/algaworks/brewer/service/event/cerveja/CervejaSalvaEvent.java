@@ -1,7 +1,8 @@
 package com.algaworks.brewer.service.event.cerveja;
 
-import com.algaworks.brewer.model.Cerveja;
 import org.springframework.util.StringUtils;
+
+import com.algaworks.brewer.model.Cerveja;
 
 public class CervejaSalvaEvent {
 
@@ -15,7 +16,8 @@ public class CervejaSalvaEvent {
         return cerveja;
     }
 
-    public boolean temFoto(){
+    public boolean temFoto() {
         return !StringUtils.isEmpty(cerveja.getFoto());
     }
+
 }

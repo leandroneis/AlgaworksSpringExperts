@@ -1,6 +1,7 @@
 package com.algaworks.brewer.dto;
 
 public class FotoDTO {
+
     private String nome;
     private String contentType;
 
@@ -24,4 +25,5 @@ public class FotoDTO {
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
+
 }

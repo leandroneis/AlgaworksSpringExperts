@@ -3,7 +3,6 @@ package com.algaworks.brewer.repository.helper.estilo;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.algaworks.brewer.repository.paginacao.PaginacaoUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -18,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.model.Estilo;
 import com.algaworks.brewer.repository.filter.EstiloFilter;
+import com.algaworks.brewer.repository.paginacao.PaginacaoUtil;
 
 public class EstilosImpl implements EstilosQueries {
 
@@ -33,7 +33,7 @@ public class EstilosImpl implements EstilosQueries {
     public Page<Estilo> filtrar(EstiloFilter filtro, Pageable pageable) {
         Criteria criteria = manager.unwrap(Session.class).createCriteria(Estilo.class);
 
-        paginacaoUtil.preparar(criteria,pageable);
+        paginacaoUtil.preparar(criteria, pageable);
         adicionarFiltro(filtro, criteria);
 
         return new PageImpl<>(criteria.list(), pageable, total(filtro));

@@ -1,19 +1,20 @@
 package com.algaworks.brewer.thymeleaf;
 
-import com.algaworks.brewer.thymeleaf.processor.ClassForErrorAttributeTagProcessor;
-import com.algaworks.brewer.thymeleaf.processor.MessageElementTagProcessor;
-import com.algaworks.brewer.thymeleaf.processor.OrderElementTagProcessor;
-import com.algaworks.brewer.thymeleaf.processor.PaginationElementTagProcessor;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.thymeleaf.dialect.AbstractProcessorDialect;
 import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
-import java.util.HashSet;
-import java.util.Set;
+import com.algaworks.brewer.thymeleaf.processor.ClassForErrorAttributeTagProcessor;
+import com.algaworks.brewer.thymeleaf.processor.MessageElementTagProcessor;
+import com.algaworks.brewer.thymeleaf.processor.OrderElementTagProcessor;
+import com.algaworks.brewer.thymeleaf.processor.PaginationElementTagProcessor;
 
 public class BrewerDialect extends AbstractProcessorDialect {
 
-    public BrewerDialect(){
+    public BrewerDialect() {
         super("AlgaWorks Brewer", "brewer", StandardDialect.PROCESSOR_PRECEDENCE);
     }
 
@@ -26,4 +27,5 @@ public class BrewerDialect extends AbstractProcessorDialect {
         processadores.add(new PaginationElementTagProcessor(dialectPrefix));
         return processadores;
     }
+
 }
