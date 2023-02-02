@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -59,6 +60,7 @@ public class CidadesController {
     }
 
     @PostMapping("/nova")
+    @CacheEvict(value = "cidades", allEntries = true)
     public ModelAndView salvar(@Valid Cidade cidade, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             return nova(cidade);
