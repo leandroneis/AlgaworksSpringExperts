@@ -54,6 +54,9 @@
 
 		<!-- Thymeleaf extras data attribute -->
 		<thymeleaf-extras-data-attribute.version>2.0.1</thymeleaf-extras-data-attribute.version>
+
+		<!-- Guava Cache -->
+		<guava.version>32.1.1-jre</guava.version>
 	</properties>
 
 	<build>
@@ -210,6 +213,22 @@
 			<version>${thymeleaf-extras-data-attribute.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- Guava Cache Google -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+		<!-- Spring Context Support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+
 
 	</dependencies>
 
