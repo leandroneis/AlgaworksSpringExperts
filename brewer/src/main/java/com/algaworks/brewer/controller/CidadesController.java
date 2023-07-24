@@ -49,18 +49,18 @@ public class CidadesController {
         return mv;
     }
 
-    @Cacheable("cidades")
+    @Cacheable(value = "cidades", key = "#codigoEstado")
     @RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<Cidade> pesquisarPorCodigoEstado(
             @RequestParam(name = "estado", defaultValue = "-1") Long codigoEstado) {
         try {
-            Thread.sleep(500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {	}
         return cidades.findByEstadoCodigo(codigoEstado);
     }
 
     @PostMapping("/nova")
-    @CacheEvict(value = "cidades", allEntries = true)
+    @CacheEvict(value = "cidades", key = "#cidade.estado.codigo", condition = "#cidade.temEstado()")
     public ModelAndView salvar(@Valid Cidade cidade, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             return nova(cidade);
