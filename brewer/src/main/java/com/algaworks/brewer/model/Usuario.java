@@ -6,12 +6,13 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.algaworks.brewer.validation.AtributoConfirmacao;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-@AtributoConfirmacao(atributo = "senha",atributoConfirmacao = "confirmacaoSenha", message = "Confirmação da senha não confere")
+@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "confirmacaoSenha", message = "Confirmação da senha não confere")
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
@@ -36,10 +37,9 @@ public class Usuario implements Serializable {
 
     private Boolean ativo;
 
-    //@NotNull(message = "Selecione pelo menos um grupo")
+    @Size(min = 1,message = "Selecione pelo menos um grupo")
     @ManyToMany
-    @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario")
-            , inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
+    @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
     private List<Grupo> grupos;
 
     //@NotNull(message = "Data de nascimento é obrigatório")
@@ -120,18 +120,13 @@ public class Usuario implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         Usuario other = (Usuario) obj;
         if (codigo == null) {
-            if (other.codigo != null)
-                return false;
-        } else if (!codigo.equals(other.codigo))
-            return false;
+            if (other.codigo != null) return false;
+        } else if (!codigo.equals(other.codigo)) return false;
         return true;
     }
 

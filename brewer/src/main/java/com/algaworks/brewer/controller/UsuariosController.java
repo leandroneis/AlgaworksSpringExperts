@@ -2,6 +2,7 @@ package com.algaworks.brewer.controller;
 
 import javax.validation.Valid;
 
+import com.algaworks.brewer.repository.Grupos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,9 +22,13 @@ public class UsuariosController {
     @Autowired
     private CadastroUsuarioService cadastroUsuarioService;
 
+    @Autowired
+    private Grupos grupos;
+
     @RequestMapping("/novo")
     public ModelAndView novo(Usuario usuario) {
         ModelAndView mv = new ModelAndView("usuario/CadastroUsuario");
+        mv.addObject("grupos",grupos.findAll());
         return mv;
     }
 
