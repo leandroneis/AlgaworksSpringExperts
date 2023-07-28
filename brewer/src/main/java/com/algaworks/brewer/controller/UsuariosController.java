@@ -3,6 +3,7 @@ package com.algaworks.brewer.controller;
 import javax.validation.Valid;
 
 import com.algaworks.brewer.repository.Grupos;
+import com.algaworks.brewer.service.exception.SenhaObrigatoriaUsuarioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,7 +44,11 @@ public class UsuariosController {
         } catch (EmailUsuarioJaCadastradoException e) {
             result.rejectValue("email", e.getMessage(), e.getMessage());
             return novo(usuario);
+        }   catch (SenhaObrigatoriaUsuarioException e) {
+            result.rejectValue("senha", e.getMessage(), e.getMessage());
+            return novo(usuario);
         }
+
 
         attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso");
         return new ModelAndView("redirect:/usuarios/novo");
