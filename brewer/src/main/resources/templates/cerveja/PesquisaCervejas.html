@@ -31,7 +31,8 @@
 	</div>
 	
 	<div class="container-fluid">
-		<form method="GET" th:object="${cervejaFilter}">
+		<form method="POST" th:object="${cerveja}" class="form-vertical  js-form-loading"
+			  th:action="@{/cervejas/novo}">
 			<div class="row">
 				<div class="form-group  col-sm-6">
 					<label class="control-label" for="sku">SKU</label>
