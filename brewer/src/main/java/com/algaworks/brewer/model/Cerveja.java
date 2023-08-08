@@ -44,7 +44,7 @@ public class Cerveja implements Serializable {
 	private String nome;
 
 	@NotBlank(message = "A descrição é obrigatória")
-	@Size(max = 500, message = "O tamanho da descrição deve estar entre 1 e 500")
+	@Size(max = 1000, message = "O tamanho da descrição deve estar entre 1 e 1000")
 	private String descricao;
 
 	@NotNull(message = "Valor é obrigatório")
