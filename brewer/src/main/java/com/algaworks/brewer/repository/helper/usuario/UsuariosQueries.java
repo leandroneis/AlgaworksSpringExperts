@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.algaworks.brewer.model.Usuario;
 import com.algaworks.brewer.repository.filter.UsuarioFilter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UsuariosQueries {
 
@@ -12,6 +14,6 @@ public interface UsuariosQueries {
 
     public List<String> permissoes(Usuario usuario);
 
-    public List<Usuario> filtrar(UsuarioFilter filtro);
+    public Page<Usuario> filtrar(UsuarioFilter filtro, Pageable pageable);
 
 }
