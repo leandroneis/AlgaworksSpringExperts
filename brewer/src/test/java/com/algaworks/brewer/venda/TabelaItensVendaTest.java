@@ -4,13 +4,7 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-import java.math.BigDecimal;
-
+import com.algaworks.brewer.session.TabelaItensVenda;
 import org.junit.Before;
 import org.junit.Test;
 

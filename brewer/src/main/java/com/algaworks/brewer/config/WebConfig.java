@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import com.algaworks.brewer.controller.converter.GrupoConverter;
+import com.algaworks.brewer.session.TabelaItensVenda;
 import org.springframework.beans.BeansException;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -47,7 +48,7 @@ import com.google.common.cache.CacheBuilder;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 @Configuration
-@ComponentScan(basePackageClasses = { CervejasController.class })
+@ComponentScan(basePackageClasses = { CervejasController.class, TabelaItensVenda.class})
 @EnableWebMvc
 @EnableSpringDataWebSupport
 @EnableCaching
