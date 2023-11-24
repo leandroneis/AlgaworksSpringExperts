@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.repository.Cervejas;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -28,11 +29,11 @@ public class VendasController {
     }
 
     @PostMapping("/item")
-    public @ResponseBody String adicionarItem(Long codigoCerveja) {
+    public ModelAndView adicionarItem(Long codigoCerveja) {
         Cerveja cerveja = cervejas.findOne(codigoCerveja);
         tabelaItensVenda.adicionarItem(cerveja, 1);
-        System.out.println(">>> total de itens: " + tabelaItensVenda.total());
-        return "Item adicionado!";
+        ModelAndView mv = new ModelAndView("venda/TabelaItensVenda");
+        mv.addObject("itens", tabelaItensVenda.getItens());
+        return mv;
     }
-
 }
