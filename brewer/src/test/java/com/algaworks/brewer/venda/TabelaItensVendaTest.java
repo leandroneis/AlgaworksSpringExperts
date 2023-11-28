@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
-import com.algaworks.brewer.session.TabelaItensVenda;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.algaworks.brewer.model.Cerveja;
+import com.algaworks.brewer.session.TabelaItensVenda;
 
 public class TabelaItensVendaTest {
 
@@ -50,23 +50,33 @@ public class TabelaItensVendaTest {
         tabelaItensVenda.adicionarItem(c1, 1);
         tabelaItensVenda.adicionarItem(c2, 2);
 
-        System.out.println(tabelaItensVenda.getValorTotal());
-
         assertEquals(new BigDecimal("18.88"), tabelaItensVenda.getValorTotal());
     }
 
-     @Test
-    public void deveManterTamanhoDaListaParaMesmasCervejas() throws Exception{
-         Cerveja c1 = new Cerveja();
-         c1.setCodigo(1L);
-         BigDecimal v1 = new BigDecimal("4.50");
-         c1.setValor(v1);
+    @Test
+    public void deveManterTamanhoDaListaParaMesmasCervejas() throws Exception {
+        Cerveja c1 = new Cerveja();
+        c1.setCodigo(1L);
+        c1.setValor(new BigDecimal("4.50"));
 
-         tabelaItensVenda.adicionarItem(c1, 1);
-         tabelaItensVenda.adicionarItem(c1, 1);
+        tabelaItensVenda.adicionarItem(c1, 1);
+        tabelaItensVenda.adicionarItem(c1, 1);
 
-         assertEquals(1, tabelaItensVenda.total());
-         assertEquals(new BigDecimal("9.00"), tabelaItensVenda.getValorTotal());
-     }
+        assertEquals(1, tabelaItensVenda.total());
+        assertEquals(new BigDecimal("9.00"), tabelaItensVenda.getValorTotal());
+    }
+
+    @Test
+    public void deveAlterarQuantidadeDoItem() throws Exception {
+        Cerveja c1 = new Cerveja();
+        c1.setCodigo(1L);
+        c1.setValor(new BigDecimal("4.50"));
+
+        tabelaItensVenda.adicionarItem(c1, 1);
+        tabelaItensVenda.alterarQuantidadeItens(c1, 3);
+
+        assertEquals(1, tabelaItensVenda.total());
+        assertEquals(new BigDecimal("13.50"), tabelaItensVenda.getValorTotal());
+    }
 
 }
